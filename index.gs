@@ -10,7 +10,10 @@ function sendEmails() {
         var lastName = data[i][1];
         var email = data[i][2];
         var attachmentUrl = data[i][3];
-
         
+
+        var personalizedMessage = message.replace('{First_Name}', firstName).replaccce('{Last_Name}', lastName);
+        
+
     }
 }
