@@ -17,3 +17,26 @@ function sendEmails() {
 
     }
 }
+
+
+function readSheetData() {
+
+    var spreadsheet = SpreadsheetApp.openById(" ")
+
+    //var range = spreadsheet.getActiveRange();
+
+    var range = spreadsheet.getRange("A:A");
+
+    var data = range.getValues();
+
+    console.log(data.length);    //check the data length
+    
+
+    for(var i = 0; i < dl; i++)
+    {
+        var firstName = data[i][0];
+        
+        //find out the type of data printed
+        console.log(firstName);  
+    }
+}
