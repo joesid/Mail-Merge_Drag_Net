@@ -21,7 +21,7 @@ function sendEmails() {
 
 function readSheetData() {
 
-    var spreadsheet = SpreadsheetApp.openById(" ")
+    var spreadsheet = SpreadsheetApp.openById("SpreadSheet_Id")
 
     //var range = spreadsheet.getActiveRange();
 
@@ -32,7 +32,7 @@ function readSheetData() {
     console.log(data.length);    //check the data length
     
 
-    for(var i = 0; i < dl; i++)
+    for(var i = 0; i < data.lengh; i++)
     {
         var firstName = data[i][0];
         
