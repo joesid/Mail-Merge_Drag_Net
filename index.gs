@@ -32,11 +32,39 @@ function readSheetData() {
     console.log(data.length);    //check the data length
     
 
-    for(var i = 0; i < data.lengh; i++)
+    for(var i = 0; i < data.lengh   ; i++)
     {
         var firstName = data[i][0];
         
         //find out the type of data printed
         console.log(firstName);  
     }
+}
+
+function sendEmailsWithAttachments() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+  var draft = GmailApp.getDrafts()[0]; // Assumes the most recent draft is the first one
+
+  // Iterate through each row of data
+  for (var i = 1; i < data.length; i++) {
+    var firstName = data[i][0];
+    var lastName = data[i][1];
+    var email = data[i][2];
+    var attachmentId = data[i][3];
+    
+    var personalizedBody = draft.getMessage().getBody()
+      .replace("{{First_Name}}", firstName)
+      .replace("{{Last_Name}}", lastName);
+
+    var attachmentUrl = "https://drive.google.com/uc?export=download&id=" + attachmentId;
+    var attachmentBlob = UrlFetchApp.fetch(attachmentUrl).getBlob();
+    
+    GmailApp.sendEmail(
+      email,
+      draft.getMessage().getSubject(),
+      personalizedBody,
+      { attachments: [attachmentBlob] }
+    );
+  }
 }
